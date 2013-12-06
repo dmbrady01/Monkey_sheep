@@ -20,11 +20,11 @@ function [cbi, ods_count, data, header] = db_cbi_calc(su_or_mu)
 %% Checks to make sure you are in a 'good_cells' folder
 curr_dir = pwd;
 
-if isempty(strfind(curr_dir,'good_cells')) == 1
-  display('You are not in a "good_cells" folder please change to the right directory');
-  display('Program terminated')
-  return
-end
+%if isempty(strfind(curr_dir,'good_cells')) == 1
+%  display('You are not in a "good_cells" folder please change to the right directory');
+%  display('Program terminated')
+%  return
+%end
 
 %% Checks to make sure you have a good_cells.csv file to load
 contents = dir([curr_dir '/good_cells.csv']);

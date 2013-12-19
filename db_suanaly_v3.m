@@ -444,7 +444,7 @@ for i = 1:size(data,2)-1
         max_fr.(name).ODS = 5;
     elseif max_fr.(name).ODI > .3 && max_fr.(name).ODI <= .5
         max_fr.(name).ODS = 6;
-    elseif max_fr.(name).ODI < .5
+    elseif max_fr.(name).ODI > .5
         max_fr.(name).ODS = 7;
     end
 end

@@ -21,6 +21,9 @@ optoanaly.parameters.window.stim = 20;
 optoanaly.parameters.window.step = 1;
 optoanaly.parameters.window.smooth = 1;
 
+%% Setting distance between tick windows
+optoanaly.parameters.tick_dist = 10;
+
 %% Make spiking timestamps centered at first stimulation of bout
 for i = 1:optoanaly.timestamps.neuron_sum.num
   name = ['neuron_' num2str(i)];
@@ -66,6 +69,18 @@ for i = 1:optoanaly.timestamps.neuron_sum.num
   ylabel('Trial')
   xlim([-optoanaly.parameters.window.fb_prestim ...
     optoanaly.parameters.window.fb_stim]);
+  set(gca, 'Xtick', -optoanaly.parameters.window.fb_prestim:optoanaly.parameters.window.fb_stim)
+ 
+  %making a cell for labeling ticks
+  x_ind =  -optoanaly.parameters.window.fb_prestim:optoanaly.parameters.tick_dist:optoanaly.parameters.window.fb_stim;
+  x_labels = cell(1,length(-optoanaly.parameters.window.fb_prestim:optoanaly.parameters.window.fb_stim));
+  x = 1;
+  for m = 1:optoanaly.parameters.tick_dist:length(x_labels)
+    x_labels{m} = x_ind(x);
+    x = x+1;
+  end
+  set(gca, 'XtickLabel', x_labels)
+
   xlabel('Time (msec)')
 
   %draw lines for when stimulus turned on
@@ -90,6 +105,18 @@ for i = 1:optoanaly.timestamps.neuron_sum.num
     title('PSTH (first)')
     xlim([-optoanaly.parameters.window.fb_prestim ...
         optoanaly.parameters.window.fb_stim])
+    set(gca, 'Xtick', -optoanaly.parameters.window.fb_prestim:optoanaly.parameters.window.fb_stim)
+    
+    %making a cell for labeling ticks
+    x_ind =  -optoanaly.parameters.window.fb_prestim:optoanaly.parameters.tick_dist:optoanaly.parameters.window.fb_stim;
+    x_labels = cell(1,length(-optoanaly.parameters.window.fb_prestim:optoanaly.parameters.window.fb_stim));
+    x = 1;
+    for m = 1:optoanaly.parameters.tick_dist:length(x_labels)
+      x_labels{m} = x_ind(x);
+      x = x+1;
+    end
+    set(gca, 'XtickLabel', x_labels)
+
     ylabel('Spikes/sec')
     xlabel('Time (msec)')
     
@@ -144,6 +171,17 @@ for i = 1:optoanaly.timestamps.neuron_sum.num
   ylim([0 length(optoanaly.timestamps.opto_events.all)])
   ylabel('Trial')
   xlim([-optoanaly.parameters.window.prestim optoanaly.parameters.window.stim]);
+  set(gca, 'Xtick', -optoanaly.parameters.window.prestim:optoanaly.parameters.window.stim)
+  
+  %making a cell for labeling ticks
+  x_ind =  -optoanaly.parameters.window.prestim:optoanaly.parameters.tick_dist:optoanaly.parameters.window.stim;
+  x_labels = cell(1,length(-optoanaly.parameters.window.prestim:optoanaly.parameters.window.stim));
+  x = 1;
+  for m = 1:optoanaly.parameters.tick_dist:length(x_labels)
+    x_labels{m} = x_ind(x);
+    x = x+1;
+  end
+  set(gca, 'XtickLabel', x_labels)
   xlabel('Time (msec)')
 
   %draw lines for when stimulus turned on
@@ -168,6 +206,18 @@ for i = 1:optoanaly.timestamps.neuron_sum.num
     title('PSTH (first)')
     xlim([-optoanaly.parameters.window.prestim ...
         optoanaly.parameters.window.stim])
+    set(gca, 'Xtick', -optoanaly.parameters.window.prestim:optoanaly.parameters.window.stim)
+
+    %making a cell for labeling ticks
+    x_ind =  -optoanaly.parameters.window.prestim:optoanaly.parameters.tick_dist:optoanaly.parameters.window.stim;
+    x_labels = cell(1,length(-optoanaly.parameters.window.prestim:optoanaly.parameters.window.stim));
+    x = 1;
+    for m = 1:optoanaly.parameters.tick_dist:length(x_labels)
+      x_labels{m} = x_ind(x);
+      x = x+1;
+    end
+    set(gca, 'XtickLabel', x_labels)
+
     ylabel('Spikes/sec')
     xlabel('Time (msec)')
     
@@ -197,6 +247,18 @@ for i = 1:optoanaly.timestamps.neuron_sum.num
   title('Interspike Intervals')
   ylabel('Proportion')
   xlabel('Time (msecs)')
+  %set(gca, 'XTick', 0:optoanaly.parameters.isi_maxplot)
+  %%making a cell for labeling ticks
+  %x_ind =  0:optoanaly.parameters.tick_dist:optoanaly.parameters.isi_maxplot;  
+  %x_labels = cell(1,length(0:optoanaly.parameters.isi_maxplot));
+  %x = 1;
+  %for m = 1:optoanaly.parameters.tick_dist:length(x_labels)
+  %  x_labels{m} = x_ind(x);
+  %  x = x+1;
+  %end
+  %set(gca, 'XtickLabel', x_labels)
+
+
   plot(X,N./sum(N))
 
   %save figure

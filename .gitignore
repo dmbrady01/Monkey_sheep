@@ -1,3 +1,4 @@
 # Ignore octave-core file
 octave-core
 .DS_Store
+data/
